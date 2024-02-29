@@ -4,6 +4,17 @@ from typing import Any, Union
 import numpy as np
 import yfinance as yf
 import positions
+from pandas import read_csv
+
+
+def read_positions(path: str = '../data/stocks_2024 - stocks.csv'):
+    data = read_csv(path)
+    nyse_list = data['NYSE']
+    name_list = data['NAME']
+    position_list = data['POSITIONS']
+    return {nyse_list[i]: position_list[i] for i in range(len(nyse_list))}
+
+POSITIONS = read_positions()
 
 
 def print_red(text):
@@ -38,7 +49,7 @@ def _compute_total_market_cap_and_position() -> tuple[float, float]:
     total_position = 0.0
     dividend_yields = {}
     market_caps = {}
-    for i, (stock_name, quantity) in enumerate(positions.POSITIONS.items()):
+    for i, (stock_name, quantity) in enumerate(POSITIONS.items()):
         info = yf.Ticker(stock_name).info
 
         if i == 0:
