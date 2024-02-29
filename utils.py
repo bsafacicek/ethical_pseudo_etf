@@ -3,7 +3,12 @@ import yfinance as yf
 from pandas import read_csv
 
 
+# Market cap of 500th company from https://companiesmarketcap.com/page/5/
+MIN_MARKET_CAP = 38.84 * 1e9
+
+
 def stock_to_buy(money: float) -> None:
+    """Logs number of stocks to buy."""
     positions = read_positions()
     total_market_cap, total_position = compute_total_market_cap_and_position(
         positions)
@@ -19,13 +24,13 @@ def stock_to_buy(money: float) -> None:
 
         to_buy = money_on_stock / stock_price - quantity
         if stock_name in ['GOOG', 'GOOGL']:
-            # assuming that we always buy GOOG and GOOGL at the same quantity.
+            # Assuming that we always buy GOOG and GOOGL at the same quantity.
             to_buy /= 2
 
-        # Since this require to sell some of the existing stocks,
+        # Since this requires to sell some of the existing stocks,
         # will never be able to buy all positive to_buy's.
         if to_buy > 0:
-            ideal_buy[stock_name] = to_buy  # math.ceil()
+            ideal_buy[stock_name] = to_buy
 
         # Remember that our strategy is to never sell and we will always have
         # some over-bought stocks (negative quantities). To compensate for it,
@@ -45,7 +50,8 @@ def stock_to_buy(money: float) -> None:
 
 def compute_total_market_cap_and_position(
         positions: dict[str, float]) -> tuple[float, float]:
-    total_quantity = 0
+    """Computes aggregate metrics over positions."""
+    total_quantity = 0.0
     total_position = 0.0
     dividend_yields = {}
     market_caps = {}
@@ -94,10 +100,6 @@ def read_positions(path: str = '../data/stocks_2024 - stocks.csv') -> dict[str, 
 
 def print_red(text):
     print("\033[91m {}\033[00m" .format(text))
-
-
-# Market cap of 500th company from https://companiesmarketcap.com/page/5/
-MIN_MARKET_CAP = 38.84 * 1e9
 
 
 def get_stock_price(stock_name: str) -> float:
