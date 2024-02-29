@@ -3,103 +3,10 @@
 from typing import Any, Union
 import numpy as np
 import yfinance as yf
+import positions
 
 def print_red(text):
     print("\033[91m {}\033[00m" .format(text))
-
-POSITIONS = {'NVDA': 15,
-             'AAPL': 50,
-             'ADBE': 10,
-             'META': 10,
-             'ASML': 5,
-             'EQIX': 5,
-             'MSFT': 10,
-             'CRM': 10,
-             'TSLA': 10,
-             'HD': 5,
-             'AMD': 10,
-             'AMZN': 10,
-             'JNJ': 10,
-             'PG': 10,
-             'CVX': 10,
-             'GOOG': 10,
-             'AMGN': 5,
-             'GOOGL': 10,
-             'PSA': 5,
-             'XOM': 10,
-             'MRK': 5,
-             'CSCO': 10,
-             'INTC': 10,
-             'NKE': 4,
-             'MCD': 0,
-             'MMM': 0,
-             'KO': 0,
-             'V': 0,
-             'WMT': 0,
-             'DIS': 0,
-             'NVS': 0,
-             'TSM': 0,
-             'SHOP': 0,
-             'NVO': 0,
-             'LLY': 0,
-             'PLD': 0,
-             'CCI': 0,
-             'PFE': 0,
-             'TMO': 0,
-             'PEP': 0,
-             'AVGO': 0,
-             'AZN': 0,
-             'TXN': 0,
-             'QCOM': 0,
-             'SBUX': 0,
-             'REGN': 0,
-             'MDLZ': 0,
-             'VRTX': 0,
-             'ISRG': 0,
-             'PDD': 0,
-             'ADI': 0,
-             'ABNB': 0,
-             'CHTR': 0,
-             'AMAT': 0,
-             'MU': 0,
-             'KDP': 0,
-             'TEAM': 0,
-             'MNST': 0,
-             'ORLY': 0,
-             'LRCX': 0,
-             'SNPS': 0,
-             'ADSK': 0,
-             'CDNS': 0,
-             'CTAS': 0,
-             'FTNT': 0,
-             'WDAY': 0,
-             'DXCM': 0,
-             'KLAC': 0,
-             'LULU': 0,
-             'NXPI': 0,
-             'CRWD': 0,
-             'BIDU': 0,
-             'MRVL': 0,
-             'CTSH': 0,
-             'ODFL': 0,
-             'ROST': 0,
-             'IDXX': 0,
-             'CPRT': 0,
-             'FAST': 0,
-             'DDOG': 0,
-             'COST': 0,
-             'NFLX': 0,
-             'INTU': 0,
-             'BKNG': 0,
-             'MAR': 0,
-             'NTES': 0,
-             'PAYX': 0,
-             'MCHP': 0,
-             'MA': 0,
-             'NUE': 0,
-             'EOG': 0,
-             'MCK': 0,
-             }
 
 
 # Market cap of 500th company from https://companiesmarketcap.com/page/5/
@@ -130,7 +37,7 @@ def _compute_total_market_cap_and_position() -> tuple[float, float]:
     total_position = 0.0
     dividend_yields = {}
     market_caps = {}
-    for i, (stock_name, quantity) in enumerate(POSITIONS.items()):
+    for i, (stock_name, quantity) in enumerate(positions.POSITIONS.items()):
         info = yf.Ticker(stock_name).info
 
         if i == 0:
