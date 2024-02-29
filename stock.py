@@ -5,6 +5,7 @@ import numpy as np
 import yfinance as yf
 import positions
 
+
 def print_red(text):
     print("\033[91m {}\033[00m" .format(text))
 
@@ -50,7 +51,8 @@ def _compute_total_market_cap_and_position() -> tuple[float, float]:
         market_caps[stock_name] = info['marketCap']
 
         if info['marketCap'] < MIN_MARKET_CAP:
-            print(f'{stock_name} has market cap of {market_caps[stock_name] / 1e9 : .2f}. So, likely not in SP500.')
+            print(
+                f'{stock_name} has market cap of {market_caps[stock_name] / 1e9 : .2f}. So, likely not in SP500.')
 
         total_quantity += quantity
         total_position += quantity * _get_stock_price(stock_name)
