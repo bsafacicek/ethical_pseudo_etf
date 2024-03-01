@@ -56,7 +56,7 @@ def stock_to_buy(money: float) -> None:
     print('Ideal buy:')
     print_dict(ideal_buy)
     red_print('Possible buy:')
-    red_print(possible_buy)
+    print_dict(possible_buy)
 
 
 def compute_total_market_cap_and_position(
@@ -127,8 +127,7 @@ def read_index(path: str = '../data/stocks_2024 - stocks.csv') -> dict[str, floa
     """Reads positions from a csv file."""
     data = read_csv(path)
     tickers = data['Ticker']
-    quantities = data['Quantity']
-    return {tickers[i]: quantities[i] for i in range(len(tickers))}
+    return {tickers[i]: 0.0 for i in range(len(tickers))}
 
 
 def red_print(text):
