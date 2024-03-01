@@ -26,7 +26,9 @@ TODO
 
 ## Reading stock positions.
 
-I keep my stock positions in a Google sheet but reading it via libraries like [gspread](https://docs.gspread.org/en/v6.0.0/) is an overkill as they require to create a Cloud project. Instead, I download the Google sheet into a local csv file.
+I use a Chase brokage account. I download my positions from "Investments -> Positions -> Things you can do -> Export as -> CSV".
+
+I keep my index tickers in a Google sheet but reading it via libraries like [gspread](https://docs.gspread.org/en/v6.0.0/) is an overkill as they require to create a Cloud project. Instead, I download the Google sheet into another local csv file.
 
 ## Requirements
 

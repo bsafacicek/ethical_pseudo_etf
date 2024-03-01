@@ -10,12 +10,20 @@ MIN_MARKET_CAP = 38.84 * 1e9
 def stock_to_buy(money: float) -> None:
     """Logs number of stocks to buy."""
     positions = read_positions()
+
+    # Check if positions are subset of index.
+    indexes = read_index()
+    for key, val in positions.items():
+        if key not in indexes:
+            ValueError(f'We hold {val} many {key} but it is not in index.')
+        indexes[key] = val
+
     total_market_cap, total_position = compute_total_market_cap_and_position(
-        positions)
+        indexes)
     total_money = total_position + money
     total_to_buy = 0.0
     ideal_buy = {}
-    for stock_name, quantity in positions.items():
+    for stock_name, quantity in indexes.items():
         info = yf.Ticker(stock_name).info
         ratio = info['marketCap'] / total_market_cap
         money_on_stock = total_money * ratio
@@ -44,7 +52,7 @@ def stock_to_buy(money: float) -> None:
     print(f'total_to_buy={total_to_buy : .2f}')
     print('Ideal buy:')
     print_dict(ideal_buy)
-    print_red('Possible buy:')
+    red_print('Possible buy:')
     print_dict(possible_buy)
 
 
@@ -65,7 +73,10 @@ def compute_total_market_cap_and_position(
         dividend_yield = info.get('dividendYield', 0.0)
         dividend_yields[stock_name] = dividend_yield
 
-        market_caps[stock_name] = info['marketCap']
+        try:
+            market_caps[stock_name] = info['marketCap']
+        except:
+            red_print(f'could not read marketCap for stock_name={stock_name}')
 
         if info['marketCap'] < MIN_MARKET_CAP:
             print(
@@ -89,16 +100,32 @@ def compute_total_market_cap_and_position(
     return total_market_cap, total_position
 
 
-def read_positions(path: str = '../data/stocks_2024 - stocks.csv') -> dict[str, float]:
+def read_positions(path: str = '../data/positions.csv') -> dict[str, float]:
+    """Reads positions from a csv file."""
+    data = read_csv(path)
+    tickers = data['Ticker']
+    quantities = data['Quantity']
+    positions = {}
+    for ticker, quantity in zip(tickers, quantities):
+        if not isinstance(ticker, str):
+            continue
+        if ticker == 'QACDS':
+            continue
+        positions[ticker] = quantity
+
+    red_print(positions)
+    return positions
+
+
+def read_index(path: str = '../data/stocks_2024 - stocks.csv') -> dict[str, float]:
     """Reads positions from a csv file."""
     data = read_csv(path)
     nyse_list = data['NYSE']
-    # To access, full names use data['NAME'].
     position_list = data['POSITIONS']
     return {nyse_list[i]: position_list[i] for i in range(len(nyse_list))}
 
 
-def print_red(text):
+def red_print(text):
     print("\033[91m {}\033[00m" .format(text))
 
 
