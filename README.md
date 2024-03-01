@@ -9,7 +9,7 @@ I call this portfolio "Pseudo ETF" as I only trade integer stocks (no split shar
 
 ## What do I mean by "Ethical ETF"?
 
-I try to avoid buying stocks from companies that are not "halal". Even tough there are halal ETFs out there the commision rates are typically at least 10 times more than that of VOO of Vanguard making them less attractive.
+I try to avoid buying stocks from companies that are not "halal". Even tough there are halal ETFs out there, the commision rates are typically at least 10 times more than that of VOO of Vanguard making them less attractive.
 
 I also do not want to buy individual stocks without an automated criterion to avoid emotional trading. This repo is to standardize my stock selling strategy as I have more money to invest in.
 

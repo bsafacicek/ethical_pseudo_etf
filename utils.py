@@ -56,7 +56,7 @@ def stock_to_buy(money: float) -> None:
     print('Ideal buy:')
     print_dict(ideal_buy)
     red_print('Possible buy:')
-    print_dict(possible_buy)
+    red_print(possible_buy)
 
 
 def compute_total_market_cap_and_position(
@@ -113,6 +113,8 @@ def read_positions(path: str = '../data/positions.csv') -> dict[str, float]:
     for ticker, quantity in zip(tickers, quantities):
         if not isinstance(ticker, str):
             continue
+
+        # Currently, CSV of positions place QACDS under quantities.
         if ticker == 'QACDS':
             continue
         positions[ticker] = quantity
