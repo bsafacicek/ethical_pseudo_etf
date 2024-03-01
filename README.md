@@ -27,9 +27,9 @@ But, say my current positions are {'NVDA': 4, 'AAPL': 0}. This means I had more 
 
 Ideally, I buy "-1" NVDA and "4" Apple, stocks_to_buy={'NVDA': -1, 'AAPL': 4}.
 
-But, this strategy involves no selling, I won't be able to buy all AAPL stocks I need to.
+But, this strategy involves no selling, so I won't be able to buy all AAPL stocks I need to.
 
-To compute how many of them I can actually buy, I will sum over all stocks that are positive in stocks_to_buy let us call this sum Z>Y.
+To compute how many of them I can actually buy, I will sum over all stocks that are positive in stocks_to_buy. Let us call this sum Z>Y.
 
 Then I multiply all the stocks to be bought (stocks_to_buy) with Y/Z.
 
@@ -37,11 +37,11 @@ Then I multiply all the stocks to be bought (stocks_to_buy) with Y/Z.
 
 This is a Google sheet of "halal" companies that I gathered mostly from top-10 publicly announced companies of "halal" ETFs.
 
+I keep my index tickers in a Google sheet but reading it via libraries like [gspread](https://docs.gspread.org/en/v6.0.0/) is an overkill as they require to create a Cloud project. Instead, I download the Google sheet into another local csv file.
+
 ## Reading stock positions.
 
 I use a Chase brokage account. I download my positions from "Investments -> Positions -> Things you can do -> Export as -> CSV".
-
-I keep my index tickers in a Google sheet but reading it via libraries like [gspread](https://docs.gspread.org/en/v6.0.0/) is an overkill as they require to create a Cloud project. Instead, I download the Google sheet into another local csv file.
 
 ## Requirements
 

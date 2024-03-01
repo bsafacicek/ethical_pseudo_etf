@@ -1,6 +1,9 @@
-from typing import Any, Union
+"""Utilities for reading positions, computing index."""
+
+from typing import Any, Optional, Union
 import yfinance as yf
 from pandas import read_csv
+import pdb
 
 
 # Market cap of 500th company from https://companiesmarketcap.com/page/5/
@@ -79,8 +82,9 @@ def compute_total_market_cap_and_position(
             red_print(f'could not read marketCap for stock_name={stock_name}')
 
         if info['marketCap'] < MIN_MARKET_CAP:
-            print(
-                f'{stock_name} has market cap of {market_caps[stock_name] / 1e9 : .2f}. So, likely not in SP500.')
+            print(f'{stock_name} has market cap of '
+                  f'{market_caps[stock_name] / 1e9 : .2f}. '
+                  'So, likely not in SP500.')
 
         total_quantity += quantity
         total_position += quantity * get_stock_price(stock_name)
@@ -126,15 +130,14 @@ def read_index(path: str = '../data/stocks_2024 - stocks.csv') -> dict[str, floa
 
 
 def red_print(text):
-    print("\033[91m {}\033[00m" .format(text))
+    print('\033[91m {}\033[00m' .format(text))
 
 
-def get_stock_price(stock_name: str) -> float:
+def get_stock_price(stock_name: str) -> Optional[float]:
     try:
         return yf.Ticker(stock_name).info['previousClose']
     except:
         print(f'stock_name={stock_name}')
-        import pdb
         pdb.set_trace()
 
 
