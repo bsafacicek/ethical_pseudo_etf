@@ -9,7 +9,7 @@ I call this portfolio "Pseudo ETF" as I only trade integer stocks (no split shar
 
 ## What do I mean by "Ethical ETF"?
 
-I try to avoid buying stocks from companies that are not "halal". Even tough there are halal ETFs out there, the commision rates are typically at least 10 times more than that of VOO of Vanguard making them less attractive.
+I try to avoid buying stocks from companies in sectors that do not match my ethical values. Even tough there are ETFs out there matching my ethics, the commision rates are typically at least 10 times more than that of VOO of Vanguard making them less attractive.
 
 I also do not want to buy individual stocks without an automated criterion to avoid emotional trading. This repo is to standardize my stock selling strategy as I have more money to invest in.
 
@@ -35,7 +35,7 @@ Then I multiply all the stocks to be bought (stocks_to_buy) with Y/Z.
 
 ## Positions Sheet
 
-This is a Google sheet of "halal" companies that I gathered mostly from top-10 publicly announced companies of "halal" ETFs.
+This is a Google sheet of "ethical" companies that I gathered mostly from top-10 publicly announced companies of the ETFs.
 
 I keep my index tickers in a Google sheet but reading it via libraries like [gspread](https://docs.gspread.org/en/v6.0.0/) is an overkill as they require to create a Cloud project. Instead, I download the Google sheet into another local csv file.
 

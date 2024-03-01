@@ -58,6 +58,11 @@ def stock_to_buy(money: float) -> None:
     red_print('Possible buy:')
     print_dict(possible_buy)
 
+    new_buys = {name: quantity for name, quantity in
+                possible_buy.items() if name not in positions}
+    red_print('New buys:')
+    print_dict(new_buys)
+
 
 def compute_total_market_cap_and_position(
         positions: dict[str, float]) -> tuple[float, float]:
