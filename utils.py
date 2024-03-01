@@ -120,9 +120,9 @@ def read_positions(path: str = '../data/positions.csv') -> dict[str, float]:
 def read_index(path: str = '../data/stocks_2024 - stocks.csv') -> dict[str, float]:
     """Reads positions from a csv file."""
     data = read_csv(path)
-    nyse_list = data['NYSE']
-    position_list = data['POSITIONS']
-    return {nyse_list[i]: position_list[i] for i in range(len(nyse_list))}
+    tickers = data['Ticker']
+    quantities = data['Quantity']
+    return {tickers[i]: quantities[i] for i in range(len(tickers))}
 
 
 def red_print(text):
