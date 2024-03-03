@@ -1,7 +1,12 @@
-
 # Ethical Pseudo ETF
 
-The main binary returns stocks to buy given investment money and existing stock positions.
+## How to use?
+
+```bash
+python3 stock.py --money=20000
+```
+
+returns stocks to buy given investment money and existing stock positions.
 
 ## What do I mean by "Pseudo ETF"?
 
@@ -50,4 +55,5 @@ Install the following dependencies.
 ```bash
 pip3 install yfinance
 pip3 install pandas-datareader
+pip3 install cryptocmd
 ```
