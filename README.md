@@ -2,15 +2,26 @@
 
 ## How to use?
 
+### Stock
+
 ```bash
 python3 stock.py --money=20000
 ```
 
-returns stocks to buy given investment money and existing stock positions.
+returns integer stock counts to buy given investment money and existing stock positions.
+
+### Crypto
+
+```bash
+python3 crypto.py --money=2000
+```
+
+returns US dollar amount for each coin. This is enough information as I use Robinhood for crypto investing which supports fractional share buying unlike Chase I use as the stock broakage account.
+
 
 ## What do I mean by "Pseudo ETF"?
 
-I call this portfolio "Pseudo ETF" as I only trade integer stocks (no split share) and I do not sell stocks to match the index. So, I never match the perfect index but I buy towards it.
+I call this portfolio "Pseudo ETF" as I only trade integer stocks (no fractional share) and I do not sell stocks to match the index. So, I never match the perfect index but I buy towards it.
 
 ## What do I mean by "Ethical ETF"?
 

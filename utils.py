@@ -128,7 +128,8 @@ def read_positions(path: str = '../data/positions.csv') -> dict[str, float]:
     return positions
 
 
-def read_index(path: str = '../data/stocks_2024 - stocks.csv') -> dict[str, float]:
+def read_index(
+        path: str = '../data/stocks_2024 - stocks.csv') -> dict[str, float]:
     """Reads positions from a csv file."""
     data = read_csv(path)
     tickers = data['Ticker']
