@@ -40,8 +40,7 @@ def stock_to_buy(money: float) -> None:
 
         # Since this requires to sell some of the existing stocks,
         # will never be able to buy all positive to_buy's.
-        if to_buy > 0:
-            ideal_buy[stock_name] = to_buy
+        ideal_buy[stock_name] = to_buy
 
         # Remember that our strategy is to never sell and we will always have
         # some over-bought stocks (negative quantities). To compensate for it,
@@ -155,4 +154,4 @@ def sort_dict(d: dict[Any, Union[float, int]]) -> dict[Any, Union[float, int]]:
 
 def print_dict(x: dict[str, float]) -> None:
     """Prints with 1 precision."""
-    print({key: f'{value : .1f}' for key, value in x.items()})
+    print({key: f'{value : .2f}' for key, value in x.items()})

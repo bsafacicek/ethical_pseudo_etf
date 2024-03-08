@@ -22,9 +22,10 @@ if __name__ == '__main__':
     print(f'today={today}')
 
     coin_cap = {}
-    for ticker in ['BTC', 'ETH', 'XRP', 'SOL', 'ADA',
+    for ticker in ['DOGE', 'USDC', 'BTC', 'ETH', 'XRP', 'SOL', 'ADA',
                    'LINK', 'TRX', 'MATIC', 'DOT',
-                   'AVAX', 'XLM', 'ATOM', 'XMR']:
+                   'AVAX', 'XLM', 'ATOM', 'XMR', 'USDT', 'BNB']:
+
         scraper = cryptocmd.CmcScraper(coin_code=ticker,
                                        start_date=today,
                                        end_date=today)
@@ -32,13 +33,13 @@ if __name__ == '__main__':
         assert len(vals) == 1, len(vals)
         for header, val in zip(headers, vals[0]):
             if header == 'Market Cap':
-                print(f'Market Cap {ticker}: {val / 1e9 : .2f} B')
+                print(f'Market Cap {ticker}: {val / 1e9 : .2f}B')
                 coin_cap[ticker] = val
             elif header == 'Close':
                 print(f'Close {ticker}: {val : .2f}')
 
     total_cap = sum(coin_cap.values())
-    print(f'total_cap: {total_cap / 1e12 : .2f} T')
+    print(f'total_cap: {total_cap / 1e12 : .2f}T')
 
     money_to_invest = {name: val * args.money /
                        total_cap for name, val in coin_cap.items()}
