@@ -12,5 +12,6 @@ parser.add_argument('--money',
                     help='Additional money to invest.')
 
 if __name__ == '__main__':
-    args = parser.parse_args()
-    utils.stock_to_buy(args.money)
+
+  args = parser.parse_args()
+  utils.stock_to_buy(args.money)
