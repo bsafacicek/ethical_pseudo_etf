@@ -16,7 +16,8 @@ NO_MORE_BUY = ['DIS', 'KDP', 'KO', 'MA', 'MCD',
 
 def remove_from_dict(d: dict[str, Any]):
   for k in NO_MORE_BUY:
-    d.pop(k)
+    if k in d:
+      d.pop(k)
 
 
 def stock_to_buy(money: float) -> None:
