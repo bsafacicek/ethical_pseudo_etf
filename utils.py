@@ -132,7 +132,7 @@ def read_positions(path: str = '../data/stocks_2024 - positions.csv') -> dict[st
     # Currently, CSV of positions place QACDS under quantities.
     if ticker in ['QACDS', 'GLDM']:
       continue
-    positions[ticker] = quantity
+    positions[ticker] = float(quantity)
 
   red_print(f'current positions = {positions}')
   return positions
